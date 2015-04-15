@@ -8,6 +8,7 @@
     "express": "^4.12.3",
     "gn_components": "git://github.com/thetmkay/gn-components",
     "grunt": "^0.4.5",
+    "grunt-browserify": "^3.7.0",
     "grunt-concurrent": "^1.0.0",
     "grunt-contrib-compass": "^1.0.3",
     "grunt-contrib-concat": "^0.5.1",
@@ -16,6 +17,7 @@
     "grunt-nodemon": "^0.4.0",
     "grunt-react": "^0.12.1",
     "grunt-react-templates": "^0.1.6",
+    "lodash": "^3.6.0",
     "nunjucks": "^1.3.3",
     "react": "^0.13.1"
   },

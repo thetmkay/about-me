@@ -44,12 +44,13 @@ module.exports = function(grunt) {
             }
         },
         reactTemplates: {
-            src: ['src/templates/*.rt']
+            src: ['src/templates/*.rt'],
+            modules: 'commonjs'
         },
         react: {
             combined_file_output: {
                 files: {
-                    'public/js/rt-classes.js': ['src/jsx/*.js']
+                    'src/js/rt-classes.js': ['src/jsx/*.js']
                 }
             }
         },
@@ -62,6 +63,9 @@ module.exports = function(grunt) {
                 dest: 'public/js/rt-components.js',
             },
         },
+        browserify: {
+          'public/js/rt.js':['src/js/rt-classes.js']
+        }
 
     });
 
@@ -73,13 +77,13 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-compass');
     grunt.loadNpmTasks('grunt-react-templates');
     grunt.loadNpmTasks('grunt-react');
-
+    grunt.loadNpmTasks('grunt-browserify');
 
     grunt.registerTask('build', ['rt', 'compass']);
     grunt.registerTask('default', ['env:dev', 'build', 'concurrent:dev']);
     grunt.registerTask('production', ['env:prod', 'build', 'concurrent:prod']);
     grunt.registerTask('sub:build', ['build']);
     grunt.registerTask('sub:watch', ['watch:compass']);
-    grunt.registerTask('rt', ['react-templates','concat', 'react']);
+    grunt.registerTask('rt', ['react-templates', 'react', 'browserify']);
 
 }
