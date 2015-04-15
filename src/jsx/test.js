@@ -1,12 +1,29 @@
-        var hwRT = require('../templates/hw.rt.js');
+        var template = require('../templates/eight.rt.js');
         var React = require('react/addons');
-        console.log('george nishimura');
-        var template = React.createClass({
+
+        var movies = [
+            'The Dark Knight',
+            'Princess Mononoke',
+            'Ocean\'s 11',
+            'In Bruges',
+            'Love Actually',
+            '500 Days of Summer',
+            'Lost in Translation',
+            'Something Else'
+        ];
+
+        var movies_eight = React.createClass({
+            getInitialState: function() {
+                return {
+                    title: 'movies',
+                    eight: movies
+                };
+            },
             render: function() {
-                return hwRT.apply(this);
+                return template.apply(this);
             }
         });
         React.render(
-            React.createElement(template, null),
+            React.createElement(movies_eight, null),
             document.getElementById('example')
         );

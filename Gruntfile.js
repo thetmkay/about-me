@@ -15,8 +15,16 @@ module.exports = function(grunt) {
                 files: ['*.js', 'json/*.json']
             },
             compass: {
-                files: ['src/scss/*.scss'],
+                files: ['src/scss/*.scss', 'src/scss/_*.scss'],
                 tasks: ['compass']
+            },
+            react: {
+                files:['src/jsx/*.js'],
+                tasks: ['react', 'browserify']
+            },
+            templates: {
+                files:['src/templates/*.rt'],
+                tasks: ['react-templates', 'browserify']
             }
         },
         nodemon: {
