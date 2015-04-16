@@ -19,7 +19,7 @@ module.exports = function(grunt) {
                 tasks: ['compass']
             },
             react: {
-                files:['src/jsx/*.js'],
+                files:['src/jsx/*.jsx'],
                 tasks: ['react', 'browserify']
             },
             templates: {
@@ -58,7 +58,7 @@ module.exports = function(grunt) {
         react: {
             combined_file_output: {
                 files: {
-                    'src/js/rt-classes.js': ['src/jsx/*.js']
+                    'src/js/rt-classes.js': ['src/jsx/*.jsx']
                 }
             }
         },
