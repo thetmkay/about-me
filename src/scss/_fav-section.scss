@@ -1,15 +1,7 @@
-$movie-color: #146A3E;
-$movie-color-shadow: #105531;
-
-$section-color: #eee;
-$section-color-shadow: #ccc;
-
-$link-blue: blue;
-
 .fav-mod {
   width: 100%;
   max-width: 50em;
-  margin: 0 auto;
+  margin: 2em auto;
 }
 
 .fav-container {
@@ -29,8 +21,9 @@ $link-blue: blue;
   font-size: 20px;
   font-weight: bold;
   letter-spacing: 2px;
-  border-bottom: solid 3px $movie-color-shadow; 
 }
+
+
 
 .fav-list {
   padding-left: 50px;
@@ -48,9 +41,10 @@ $link-blue: blue;
     height: 65%;
     width: 1em;
     width: calc(1em - 3px);
-    border-right: solid 3px $movie-color-shadow;
   }
 }
+
+
 
 .fav-col {
   background-color: white;
@@ -79,19 +73,18 @@ $link-blue: blue;
 .fav-comment-txt {
   padding: 0 0.5em 1em 0.5em;
   margin: 0;
-  border-bottom: solid 1px $movie-color-shadow;
 }
+
+
 
 .quote-mark {
     padding-top: 1em;
     margin-top: 1em;
     display: block;
-    border-top: solid 1px $movie-color-shadow;
     position: relative;
     text-align: center;
 
   &:before {
-    color: $movie-color;
     font-family: Coustard, serif;
     content: open-quote;
     position: absolute;
@@ -106,7 +99,6 @@ $link-blue: blue;
     left: 0;
     right: 0;
     margin: 0 auto;
-
   }
 }
 
@@ -115,9 +107,10 @@ $link-blue: blue;
   font-weight: 300;
   padding: 2px 1em;
   position: relative;
-
-  
 }
+
+
+
 
 .fav-link {
 
@@ -133,23 +126,17 @@ $link-blue: blue;
     width: 50px;
   }
 
-  .selected &:before, &:hover:before {
-    color: $movie-color;
-  }
-
   &:visited {
     color: black;
   }
 
   .selected &, &:hover {
-    color: $movie-color-shadow;
     font-style: italic;
+    font-weight: normal;
   }
 
-  
   color: black;
   text-decoration: none;
-
 }
 
 .link.external {
@@ -170,16 +157,58 @@ $link-blue: blue;
   width: 100%;
 }
 
-.movies {
+@mixin fav-section($color) {
+
+  $color-shadow: darken($color,7);
+
+  .fav-label {
+    border-bottom: solid 3px $color-shadow; 
+  }
+
   .fav-container {
     &:before {
-      background-color: $movie-color;
+      border-right: solid 3px $color-shadow;
     }
-    //background-color: $movie-color;
+  }
+
+  .selected .fav-link:before, .fav-link:hover:before {
+    color: $color;
+  }
+  .selected .fav-link, .fav-link:hover {
+    color: $color;
+  }
+  
+  .fav-comment-txt {
+    border-bottom: solid 1px $color-shadow;
+  }
+
+  .quote-mark {
+      border-top: solid 1px $color-shadow;
+      &:before {
+        color: $color;
+      }
+  }
+
+  .fav-container {
+    &:before {
+      background-color: $color;
+    }
   }
 
   .fav-label {
-    background-color:$movie-color;
+    background-color:$color;
   }
+}
 
+.fav-mod:nth-child(1) {
+  @include fav-section($green);
+}
+.fav-mod:nth-child(2) {
+  @include fav-section($maroon);
+}
+.fav-mod:nth-child(3) {
+  @include fav-section($crimson);
+}
+.fav-mod:nth-child(4) {
+  @include fav-section($sky-blue);
 }

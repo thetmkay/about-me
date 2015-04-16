@@ -3,56 +3,83 @@
         var header_template = require('../templates/fav-nav.rt.js');
         var React = require('react/addons');
 
-        var movies = require('../../json/movies').movies;
+        var movies = require('../../json/movies');
+        var icecream = require('../../json/icecream');
+        var snacks = require('../../json/snacks');
+        var songs = require('../../json/songs');
 
-        var sections = [{
-            title: 'movies',
-            'picks': movies
-        }];
+        var eventstream = function() {
+          var obj = {};
+          var subscribers = [];
+
+          var register = function(callback) {
+            subscribers.push(callback);
+          };
+
+          var notify = function(args) {
+            for(var i = 0; i < subscribers.length; i++) {
+              subscribers[i](args);
+            }
+          } 
+      
+          obj.register =register;
+          obj.notify = notify;
+          return obj;
+        }
+
+        
 
 
-        var comment_txt = "The Dark Knight is a fantastic film with many likeable things that I will want to talk about here. I have a little more to talk about.";
+        var comment_txt = "FILMNAME is a fantastic film with many likeable things that I will want to talk about here. I have a little more to talk about.";
+
+        for (var i = 0; i < movies.length; i++){
+          movies.picks[i].comment = comment_txt.replace("FILMNAME", movies[i].title);
+        }
+
+        var sections = [ movies,snacks,songs,icecream];
 
         var Pick = React.createClass({
+          updateSelection: function(id) {
+              this.setState({selected: id == this.props.index});
+            },
           getInitialState: function() {
+            this.props.stream.register(this.updateSelection);
             return {
-              title: this.props.title,
-              link_text: this.props.link.text,
-              link_url: this.props.link.url,
-              key: this.props.key,
               selected: this.props.selected
             }
           },
           handler: function(e) {
+            e.preventDefault();
+            this.props.stream.notify(this.props.index);
             this.setState({selected: true});
-            console.log(this.state.selected);
-            this.props.handler(e);
+          },
+          externalLink: function(link) {
+            if(link && link.text && link.url){            
+            var extLink = <span><span>&nbsp;-&nbsp;</span><a href={link.url} className="link external">{link.text}</a></span>;
+
+              return ( {extLink});
+            }
           },
           render: function() {
             var classes="fav-pick" + (this.state.selected? " selected":"") ;
               return (
 <li className={classes}>
-  <a onClick={this.handler} href="#" className="fav-link">{this.state.title}</a>&nbsp;-&nbsp; 
-  <a href={this.state.link_url} className="link external">{this.state.link_text}</a></li>
+  <a onClick={this.handler} href="#" className="fav-link">{this.props.title}</a>{ this.externalLink(this.props.link)}</li>
               );
             }
         });
         var PickList = React.createClass({
           getInitialState: function() {
             return {
-              picks : this.props.picks,
-              selected : 0,
-              handler : this.props.handler
+              picks : this.props.picks
             }
           },
           render: function() {
-            console.log(this.state.picks[0]);
-            handler = this.state.handler;
+            stream = this.props.stream;
             var list = this.state.picks.map(function(pick, index){
-              
               var selected = pick.selected; 
               return (
-                <Pick link={pick.link} title={pick.title} selected={selected} key={index} handler={handler.bind(null, index)} />
+                <Pick key={pick.title} link={pick.link} title={pick.title} selected={selected} index={index} stream={stream} />
                 )
             });
             return (
@@ -64,22 +91,22 @@
           }
         });
         var Section = React.createClass({
+            updateComment: function(id) {
+                this.setState({comment : this.state.picks[id].comment});
+            },
             getInitialState: function() {
-                return {
+              var eventStream = new eventstream();
+              eventStream.register(this.updateComment);
+              return {
                     title: this.props.title,
                     picks: this.props.picks,
-                    comment: comment_txt
+                    comment: this.props.picks[this.props.default].comment,
+                    stream: eventStream
                 };
-            },
-            clickHandler: function(id,e) {
-              e.preventDefault();
-              console.log(id);
-              this.setState({comment : this.state.picks[id].comment});
-              console.log(this.state.comment);
             },
             render: function() {
               return (
-                <div className="fav-mod movies">
+              <div className="fav-mod" id={this.state.title.replace(" ", "-")}>
                 <div className="fav-row">
                   <label className="fav-label">{this.state.title}</label>
                 </div>
@@ -91,7 +118,7 @@
                     </blockquote>
                   </div>
                   <div className="list-col fav-col">
-                    <PickList picks={this.state.picks} handler={this.clickHandler}/>
+                    <PickList picks={this.state.picks} stream={this.state.stream}/>
                   </div>
                 </div>
                 </div>
@@ -110,13 +137,13 @@
                 var fav_sections = this.props.sections.map(function(section) {
                     section.picks[0].selected = true;
                     return ( 
-                      <Section selected={0} title={section.title} picks={section.picks} />
+                      <Section default={0} key={section.title} title={section.title} picks={section.picks} />
                     );
                 });
                 return ( 
                    <div className="sections-list" >
                     <FavNav /> 
-                    {fav_sections}
+                    <div className="fav-sections">{fav_sections}</div>
                    </div>
                 );
             }

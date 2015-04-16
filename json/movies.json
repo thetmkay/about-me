@@ -1,5 +1,6 @@
 {
-    "movies": [{
+    "title":"movies",
+    "picks": [{
         "title": "The Dark Knight",
         "comment": "",
         "link": {
@@ -47,13 +48,6 @@
         "link": {
             "text": "imdb",
             "url": "//www.imdb.com/title/tt0335266/"
-        }
-    }, {
-        "title": "Something Else",
-        "comment": "",
-        "link": {
-            "text": "imdb",
-            "url": "#"
         }
     }]
 
