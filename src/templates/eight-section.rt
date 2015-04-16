@@ -1,0 +1,14 @@
+<section class="eight-mod movies">
+  <div class="eight-row"><label class="eight-label">{this.state.title}</label></div>
+  <div class="eight-row eight-container">
+  <div class="feature-col eight-col">
+  <blockquote class="eight-comment"><span class="quote-mark"></span><p class="eight-comment-txt">The Dark Knight is a fantastic film with many likeable things that I will want to talk about here. I have a little more to talk about.
+ </p> </blockquote>
+  </div>
+  <div class="list-col eight-col">
+    <ol class="eight-list">
+     <li rt-repeat="pick in this.state.eight" class="eight-pick">{pick}</li> 
+    </ol>
+  </div>
+  </div>
+</section>

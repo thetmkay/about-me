@@ -1,9 +1,0 @@
-<section class="eight-mod movies">
-  <div class="title eight-col">{this.state.title}</div>
-  <div class="feature eight-col"></div>
-  <div class="list eight-col">
-    <ul>
-     <li rt-repeat="pick in this.state.eight" class="eight-pick">{pick}</li> 
-    </ul>
-  </div>
-</section>

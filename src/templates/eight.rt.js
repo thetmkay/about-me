@@ -6,7 +6,7 @@ function repeatPick1(pick, pickIndex) {
 }
 module.exports = function () {
     return React.createElement('section', { 'className': 'eight-mod movies' }, React.createElement('div', { 'className': 'title eight-col' }, this.state.title), React.createElement('div', { 'className': 'feature eight-col' }), React.createElement('div', { 'className': 'list eight-col' }, React.createElement.apply(this, _.flatten([
-        'ul',
+        'ol',
         {},
         _.map(this.state.eight, repeatPick1.bind(this))
     ]))));
