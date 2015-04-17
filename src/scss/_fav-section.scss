@@ -8,6 +8,7 @@
   padding-left: 1em; 
 
   @include mq($page-width) {
+    display: -webkit-flex;
     display: flex;
     flex-direction: row;
     align-items: stretch;
@@ -56,6 +57,7 @@
 
   display: inline-block;
   display: flex;
+  display: -webkit-fle;
   align-items: center;
 
   flex-direction: column;
