@@ -21,11 +21,7 @@ module.exports = function(grunt) {
             react: {
                 files:['src/jsx/*.jsx'],
                 tasks: ['react', 'browserify']
-            },
-            templates: {
-                files:['src/templates/*.rt'],
-                tasks: ['react-templates', 'browserify']
-            }
+            }       
         },
         nodemon: {
             all: {
@@ -51,10 +47,6 @@ module.exports = function(grunt) {
                 }
             }
         },
-        reactTemplates: {
-            src: ['src/templates/*.rt'],
-            modules: 'commonjs'
-        },
         react: {
             combined_file_output: {
                 files: {
@@ -62,19 +54,9 @@ module.exports = function(grunt) {
                 }
             }
         },
-        concat: {
-            options: {
-                separator: ';',
-            },
-            dist: {
-                src: ['src/templates/*.js'],
-                dest: 'public/js/rt-components.js',
-            },
-        },
         browserify: {
           'public/js/rt.js':['src/js/rt-classes.js']
         }
-
     });
 
     grunt.loadNpmTasks('grunt-env');
@@ -83,7 +65,6 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-nodemon');
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-compass');
-    grunt.loadNpmTasks('grunt-react-templates');
     grunt.loadNpmTasks('grunt-react');
     grunt.loadNpmTasks('grunt-browserify');
 
@@ -92,6 +73,6 @@ module.exports = function(grunt) {
     grunt.registerTask('production', ['env:prod', 'build', 'concurrent:prod']);
     grunt.registerTask('sub:build', ['build']);
     grunt.registerTask('sub:watch', ['watch:compass']);
-    grunt.registerTask('rt', ['react-templates', 'react', 'browserify']);
+    grunt.registerTask('rt', ['react', 'browserify']);
 
 }

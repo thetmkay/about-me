@@ -5,10 +5,13 @@
 }
 
 .fav-container {
-  display: flex;
-  flex-direction: row;
-  align-items: stretch;
   padding-left: 1em; 
+
+  @include mq($page-width) {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+  }
 }
 
 .fav-label {
@@ -47,25 +50,39 @@
 
 
 .fav-col {
+
   background-color: white;
   padding: 1em;
+
+  display: inline-block;
+  display: flex;
+  align-items: center;
+
+  flex-direction: column;
+
+  @include mq($page-width) {
+      width: 50%;
+      flex-direction: row;
+      flex-grow:2;
+  }
   &.feature-col {
-    flex-grow:2;
-    width: 50%;
-    order: 1;
+    width: 100%;
+    @include mq($page-width) {
+      order: 1;
+    }
   }
   &.list-col {
     border-left: none;
-    width: 50%;
-    flex-grow:2;
-    order: 2;
+    width: 100%;
+    @include mq($page-width) {
+      order: 2;
+    }
   }
 }
 
 .fav-comment {
   margin: 0;
   text-align: center;
-  padding-top: 1em;
   max-width: 250px;
   margin: 0 auto;
 }
@@ -74,7 +91,6 @@
   padding: 0 0.5em 1em 0.5em;
   margin: 0;
 }
-
 
 
 .quote-mark {
@@ -115,7 +131,12 @@
 .fav-link {
 
   &:before {
-    content: "<";
+    content: "^";
+    content: "\25B4";
+    @include mq($page-width) {
+      content: "<";
+      content: "\2190";
+    }
     font-style: normal;
     left: -50px;
     top: 0;

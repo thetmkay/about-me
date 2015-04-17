@@ -1,7 +1,12 @@
 @import 'colors';
+@import 'gn/mixins';
+
+$page-width: 600px;
+
 @import 'fav-section';
 
 @import 'fav-nav';
+@import 'gn/footer';
 
 * {
   box-sizing: border-box;
@@ -10,13 +15,28 @@
 html, body {
   font-family: 'Open Sans', sans-serif;
   width: 100%;
-  height: 100%;
   margin: 0;
-  padding: 0;
   background-color: $bg-grey;
+}
+
+html {
+  padding: 0;
 }
 
 .sections-list {
   width: 100%;
 }
+
+.ftr-link {
+  &, &:active, &:visited {
+    color: $link-blue;
+    text-decoration: none;
+  }
+
+  &:hover {
+    color: $link-blue;
+    text-decoration: underline;
+  }
+}
+
 

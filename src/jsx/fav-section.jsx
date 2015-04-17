@@ -1,6 +1,4 @@
         //var section_template = require('../section_templates/fav.rt.js');
-        var section_template = require('../templates/fav-section.rt.js');
-        var header_template = require('../templates/fav-nav.rt.js');
         var React = require('react/addons');
 
         var movies = require('../../json/movies');
@@ -37,7 +35,21 @@
         }
 
         var sections = [ movies,snacks,songs,icecream];
-
+        var ExternalLink = React.createClass({
+          render: function() {
+          var link = this.props.link;
+          if(link && link.text && link.url) { 
+              return (
+                <span>&nbsp;-&nbsp;<a href={link.url} target="_blank" className="link external">{link.text}</a></span>
+              );
+            }
+           else {
+            return (
+              <span></span>
+            )
+            }
+          }
+        });
         var Pick = React.createClass({
           updateSelection: function(id) {
               this.setState({selected: id == this.props.index});
@@ -53,18 +65,11 @@
             this.props.stream.notify(this.props.index);
             this.setState({selected: true});
           },
-          externalLink: function(link) {
-            if(link && link.text && link.url){            
-            var extLink = <span><span>&nbsp;-&nbsp;</span><a href={link.url} className="link external">{link.text}</a></span>;
-
-              return ( {extLink});
-            }
-          },
           render: function() {
             var classes="fav-pick" + (this.state.selected? " selected":"") ;
               return (
 <li className={classes}>
-  <a onClick={this.handler} href="#" className="fav-link">{this.props.title}</a>{ this.externalLink(this.props.link)}</li>
+  <a onClick={this.handler} href="#" className="fav-link">{this.props.title}</a><ExternalLink link={this.props.link} /></li>
               );
             }
         });
@@ -128,9 +133,12 @@
         });
         var FavNav = React.createClass({
             render: function() {
-              return header_template.apply(this);
+              return (
+                <div className="fav-nav">
+                  <span className="nav-title">&lt;3</span>
+                </div>
+              );
             }
-
         });
         var Lists = React.createClass({
             render: function() {
@@ -150,5 +158,5 @@
         });
         React.render(
             <Lists sections={sections} />,
-            document.body
+            document.getElementById('main')
         );
