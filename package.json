@@ -1,6 +1,6 @@
 {
   "name": "about-me",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "about me section of website",
   "main": "app.js",
   "dependencies": {
