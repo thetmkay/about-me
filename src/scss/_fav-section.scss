@@ -1,3 +1,5 @@
+@charset "UTF-8";
+
 .fav-mod {
   width: 100%;
   max-width: 50em;
@@ -96,7 +98,7 @@
 
 
 .quote-mark {
-    quotes: "“" "”";
+    quotes: '"' '"';
     padding-top: 1em;
     margin-top: 1em;
     display: block;
