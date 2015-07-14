@@ -2,6 +2,11 @@
   "name": "about-me",
   "version": "0.0.3",
   "description": "about me section of website",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/thetmkay/about-me.gi
+t"
+  },
   "main": "app.js",
   "dependencies": {
     "consolidate": "^0.12.1",
@@ -23,8 +28,7 @@
   },
   "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "preinstall": "npm install --ignore-scripts && npm update --ignore-scripts"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "me@georgenishimura.com",
   "license": "ISC"
