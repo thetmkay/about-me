@@ -4,8 +4,7 @@
   "description": "about me section of website",
   "repository": {
     "type": "git",
-    "url": "git://github.com/thetmkay/about-me.gi
-t"
+    "url": "git://github.com/thetmkay/about-me.git"
   },
   "main": "app.js",
   "dependencies": {
