@@ -68,8 +68,6 @@ module.exports = function(grunt) {
     grunt.registerTask('build', ['rt', 'compass']);
     grunt.registerTask('default', ['env:dev', 'build', 'concurrent:dev']);
     grunt.registerTask('production', ['env:prod', 'build', 'concurrent:prod']);
-    grunt.registerTask('sub:build', ['build']);
-    grunt.registerTask('sub:watch', ['watch:compass']);
     grunt.registerTask('rt', ['react', 'browserify']);
 
 }

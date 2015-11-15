@@ -1,12 +1,12 @@
 @import 'colors';
-@import 'gn/mixins';
+@import 'mixins';
 
 $page-width: 600px;
 
 @import 'fav-section';
 
 @import 'fav-nav';
-@import 'gn/footer';
+@import 'footer';
 
 * {
   box-sizing: border-box;

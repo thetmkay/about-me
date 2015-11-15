@@ -1,6 +1,7 @@
 var express = require('express'),
   cons = require('consolidate'),
   nunjucks = require('nunjucks'),
+  footer = require('gn-components/footer'),
   path = require('path');
 
 var app = module.exports = express();
@@ -12,7 +13,7 @@ var app = module.exports = express();
 
 var view_paths = [
   path.join(__dirname,'views'),
-  path.join(__dirname, 'node_modules', 'gn_components', 'views')
+  footer.views
 ];
 
 var env = new nunjucks.Environment(new nunjucks.FileSystemLoader(view_paths));

@@ -1,6 +1,5 @@
 node_modules/*
 .sass-cache/
-public/*
 src/js
 *.swp
 *.rt.js
