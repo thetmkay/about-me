@@ -1,6 +1,6 @@
 {
   "name": "gn-about-me",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "about me section of website",
   "main": "app.js",
   "engines": {
